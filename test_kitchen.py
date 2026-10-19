@@ -2,10 +2,10 @@
 # [x] 200 g x 3 = 600 g
 # [x] multiplying a quantity does not modify the original
 # [x] two quantities with the same amount and unit are equal
-# [ ] 1 oz is not the same as 1 g
-# [ ] 200 g + 300 g = 500 g
-# [ ] 200 g + 1 oz, reduced to grams, using a conversion rate
-# [ ] (200 g + 1 oz) x 2
+# [x] 1 oz is not the same as 1 g
+# [x] 200 g + 300 g = 500 g
+# [x] 200 g + 1 oz, reduced to grams, using a conversion rate
+# [x] (200 g + 1 oz) x 2
 # [ ] __hash__ (Quantity can't go in a set/dict yet, not needed now)
 
 from kitchen import Quantity
@@ -50,3 +50,9 @@ def test_reduce_ounces_to_grams():
     converter = Converter()
     converter.add_rate("oz", "g", 28)
     assert converter.reduce(ounces(2), "g") == grams(56)
+    
+def test_sum_times():
+    converter = Converter()
+    converter.add_rate("oz", "g", 28)
+    total = grams(200).plus(ounces(1)).times(2)
+    assert converter.reduce(total, "g") == grams(456)
