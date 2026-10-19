@@ -1,3 +1,4 @@
+# kitchen.py
 class Quantity:
     def __init__(self, amount, unit):
         self.amount = amount
@@ -24,6 +25,9 @@ class Sum:
     def __init__(self, left, right):
         self.left = left
         self.right = right
+
+    def times(self, multiplier):
+        return Sum(self.left.times(multiplier), self.right.times(multiplier))
 
     def reduce(self, converter, unit):
         left = self.left.reduce(converter, unit)
