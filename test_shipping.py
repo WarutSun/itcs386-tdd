@@ -2,7 +2,7 @@ import pytest
 from shipping import shipping_fee
 
 
-# Rule 1: weight must be > 0
+# BUG (Rule 1): weight 0 is not rejected, code uses < instead of <=
 @pytest.mark.parametrize("weight", [0, -1])
 def test_invalid_weight_is_rejected(weight):
     with pytest.raises(ValueError):
