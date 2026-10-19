@@ -33,7 +33,12 @@ class Sum:
 class Converter:
     def reduce(self, source, unit):
         return source.reduce(unit)
+class Converter:
+    def add_rate(self, from_unit, to_unit, rate):
+        pass
 
+    def reduce(self, source, unit):
+        return source.reduce(unit)
 
 def grams(amount):
     return Quantity(amount, "g")
